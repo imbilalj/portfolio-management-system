@@ -11,6 +11,7 @@ export const orderCreateHandler = async (req, res) => {
             order_status: status,
             transaction_type: transaction_type,
             order_value: order_value,
+            id_security_detail: "685fd8199d85aa1fc7a95fdd",
             created_on: new Date(),
             created_by: user_id
         };

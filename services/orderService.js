@@ -2,6 +2,7 @@ import { OrderDetail } from '../models/orderDetail.js';
 
 export const addOrder = async (order) => {
     const detail = new OrderDetail(order)
+    await detail.save();
     return detail;
 }
 
