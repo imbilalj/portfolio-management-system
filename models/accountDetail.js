@@ -36,5 +36,4 @@ const AccountDetailSchema = new Schema({
   },
 });
 
-const AccountDetail = mongoose.model("AccountDetail", AccountDetailSchema);
-module.exports = AccountDetail;
+export const AccountDetail = mongoose.model("AccountDetail", AccountDetailSchema);

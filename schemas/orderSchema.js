@@ -8,6 +8,9 @@ export const orderCreateSchema = z.object({
     transaction_type: z
         .string({ required_error: 'Transaction type must be provided' }),
 
+    security_id: z
+        .string({ required_error: 'Security must be provided' }),
+
     order_value: z
         .string({ required_error: 'Order value must be provided' }),
 

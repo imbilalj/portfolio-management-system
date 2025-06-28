@@ -3,14 +3,14 @@ import { addOrder, deleteOrder, updateOrder } from "../services/orderService.js"
 
 export const orderCreateHandler = async (req, res) => {
     try {
-        const { ref_no, status, transaction_type, order_value, user_id } = req.body;
+        const { ref_no, status, transaction_type, order_value, user_id, security_id } = req.body;
         // update
         const body = {
             order_ref_no: ref_no,
             order_status: status,
             transaction_type: transaction_type,
             order_value: order_value,
-            id_security_detail: "685fd8199d85aa1fc7a95fdd",
+            id_security_detail: security_id,
             created_on: new Date(),
             created_by: user_id
         };
@@ -25,6 +25,10 @@ export const orderUpdateHandler = async (req, res) => {
     try {
         const { ref_no, status, transaction_type, order_value, user_id } = req.body;
         const { id } = req.params;
+
+        // order value calculation.
+
+
         const body = {
             order_ref_no: ref_no,
             order_status: status,
