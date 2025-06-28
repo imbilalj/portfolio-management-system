@@ -100,6 +100,7 @@ export const logOutHandler = async (req, res) => {
 
     const updateUserSession = await AuditUserLogin.findOne({
       id_user_login_detail: userId,
+      logout_date_time: { $exists: false },
     });
 
     updateUserSession.session_id = "";
