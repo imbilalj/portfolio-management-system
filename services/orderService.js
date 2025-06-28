@@ -1,23 +1,23 @@
-import { orderDetail } from '../models/orderDetail';
+import { OrderDetail } from '../models/orderDetail.js';
 
 export const addOrder = async (order) => {
-    const order = new orderDetail(order)
-    return order;
+    const detail = new OrderDetail(order)
+    return detail;
 }
 
 export const updateOrder = async (id, order) => {
-    const order = await orderDetail.findByIdAndUpdate(id, order, function (err, order) {
+    const updatedOrder = await OrderDetail.findByIdAndUpdate(id, order, function (err, result) {
         if (err) {
             console.log(err);
         } else {
-            console.log("Updated order: ", order);
+            console.log("Updated order: ", result);
         }
     })
-    return order;
+    return updatedOrder;
 }
 
 export const deleteOrder = async (id) => {
-    const order = await orderDetail.findByIdAndDelete(id, function (err, order) {
+    const order = await OrderDetail.findByIdAndDelete(id, function (err, order) {
         if (err) {
             console.log(err);
         } else {

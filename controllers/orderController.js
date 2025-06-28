@@ -1,17 +1,11 @@
-// ID_SECURITY_DETAIL INT FK - SECURITY_DETAIL.ID
-// ORDER_REF_NO VARCHAR
-// ORDER_STATUS VARCHAR
-// TRANSACTION_TYPE VARCHAR
-// ORDER_VALUE VARCHAR
-// CREATED_ON TIMESTAMP
-// CREATED_BY INT FK - USER_LOGIN_DETAIL.ID
-
-import { addOrder, deleteOrder, updateOrder } from "../services/orderService";
+import { addOrder, deleteOrder, updateOrder } from "../services/orderService.js";
 
 
 export const orderCreateHandler = async (req, res) => {
+    console.log("Create Orders: ");
     try {
         const { ref_no, status, transaction_type, order_value, user_id } = req.body;
+        // update
         const body = {
             order_ref_no: ref_no,
             order_status: status,
@@ -51,7 +45,8 @@ export const orderDeleteHandler = async (req, res) => {
     try {
         const order = await deleteOrder(id);
         return res.status(200).send({
-            message: "Order deleted"
+            message: "Order deleted",
+            order
         })
     } catch (error) {
         console.log("Something went wrong: ", error);
