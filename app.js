@@ -5,6 +5,7 @@ import config from './config/config.js';
 import { connectDB } from './utils/db.js';
 import router from './routes/index.js';
 import { swaggerSpec } from './swagger.js';
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -18,13 +19,14 @@ app.use(
 
 // const PORT = config.port;
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(express.json());
+app.use(cookieParser());
 
 connectDB();
 
-app.use('/api', router);
+app.use("/api", router);
 
 // app.listen(PORT, () => {
 //   console.log(`Running on PORT ${PORT}`);

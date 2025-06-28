@@ -2,9 +2,11 @@ import { Router } from 'express';
 import {
   loginHandler,
   registerHandler,
-} from '../controllers/authController.js';
-import { validateMiddleware } from '../middlewares/validateMiddleware.js';
-import { loginSchema, registerSchema } from '../schemas/authSchema.js';
+  logOutHandler,
+} from "../controllers/authController.js";
+import { validateMiddleware } from "../middlewares/validateMiddleware.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js";
+import { loginSchema, registerSchema } from "../schemas/authSchema.js";
 
 const router = Router();
 
@@ -73,5 +75,7 @@ router.post('/login', validateMiddleware(loginSchema), loginHandler);
  *         description: Register user account
  */
 router.post('/register', validateMiddleware(registerSchema), registerHandler);
+
+router.get("/logout", authMiddleware, logOutHandler);
 
 export default router;
