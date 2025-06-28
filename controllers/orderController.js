@@ -2,7 +2,6 @@ import { addOrder, deleteOrder, updateOrder } from "../services/orderService.js"
 
 
 export const orderCreateHandler = async (req, res) => {
-    console.log("Create Orders: ");
     try {
         const { ref_no, status, transaction_type, order_value, user_id } = req.body;
         // update
