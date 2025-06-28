@@ -1,11 +1,20 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
 import config from './config/config.js';
 import { connectDB } from './utils/db.js';
 import router from './routes/index.js';
 import { swaggerSpec } from './swagger.js';
 
 const app = express();
+
+app.use(
+  cors({
+    origin: [config.corsOrigin],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    credentials: true,
+  })
+);
 
 // const PORT = config.port;
 
