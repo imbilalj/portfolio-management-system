@@ -7,13 +7,7 @@ export const addOrder = async (order) => {
 }
 
 export const updateOrder = async (id, order) => {
-    const updatedOrder = await OrderDetail.findByIdAndUpdate(id, order, function (err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("Updated order: ", result);
-        }
-    })
+    const updatedOrder = await OrderDetail.findByIdAndUpdate(id, order)
     return updatedOrder;
 }
 

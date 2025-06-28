@@ -11,7 +11,7 @@ export const orderCreateSchema = z.object({
     security_id: z
         .string({ required_error: 'Security must be provided' }),
 
-    order_value: z
+    quantity: z
         .string({ required_error: 'Order value must be provided' }),
 
     user_id: z
