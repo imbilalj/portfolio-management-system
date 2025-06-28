@@ -1,8 +1,15 @@
-import jwt from 'jsonwebtoken';
-import config from '../config/config.js';
+import jwt from "jsonwebtoken";
+import config from "../config/config.js";
 
 export const authMiddleware = (req, res, next) => {
-  const accessToken = req.header('Authorization')?.split(' ')[1] || '';
+  const accessToken = req.cookies.access_token;
+
+  if (!accessToken) {
+    return res.status(401).json({
+      status: false,
+      message: "unauthorized no token provided",
+    });
+  }
 
   try {
     const decoded = jwt.verify(accessToken, config.jwtSecret);
@@ -11,6 +18,6 @@ export const authMiddleware = (req, res, next) => {
 
     next();
   } catch (e) {
-    res.status(401).send({ message: 'Unauthorized' });
+    res.status(401).send({ message: "Unauthorized" });
   }
 };

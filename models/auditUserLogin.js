@@ -9,7 +9,6 @@ const AuditUserLoginSchema = new Schema({
   },
   session_id: {
     type: String,
-    required: [true, "Session ID is required"],
     unique: true,
     maxlength: [255, "Session ID cannot exceed 255 characters"],
   },
