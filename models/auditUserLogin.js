@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+import mongoose from "mongoose";
+const { Schema, model } = mongoose;
 
 const AuditUserLoginSchema = new Schema({
   id_user_login_detail: {
@@ -27,5 +27,4 @@ const AuditUserLoginSchema = new Schema({
   },
 });
 
-const AuditUserLogin = mongoose.model("AuditUserLogin", AuditUserLoginSchema);
-module.exports = AuditUserLogin;
+export const AuditUserLogin = model("AuditUserLogin", AuditUserLoginSchema);
