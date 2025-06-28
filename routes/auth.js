@@ -1,10 +1,10 @@
-import { Router } from "express";
+import { Router } from 'express';
 import {
   loginHandler,
   registerHandler,
-} from "../controllers/authController.js";
-import { validateMiddleware } from "../middlewares/validateMiddleware.js";
-import { loginSchema, registerSchema } from "../schemas/authSchema.js";
+} from '../controllers/authController.js';
+import { validateMiddleware } from '../middlewares/validateMiddleware.js';
+import { loginSchema, registerSchema } from '../schemas/authSchema.js';
 
 const router = Router();
 
@@ -37,7 +37,7 @@ const router = Router();
  *       200:
  *         description: Access token and user object
  */
-router.post("/login", validateMiddleware(loginSchema), loginHandler);
+router.post('/login', validateMiddleware(loginSchema), loginHandler);
 
 /**
  * @swagger
@@ -72,6 +72,6 @@ router.post("/login", validateMiddleware(loginSchema), loginHandler);
  *       201:
  *         description: Register user account
  */
-router.post("/register", validateMiddleware(registerSchema), registerHandler);
+router.post('/register', validateMiddleware(registerSchema), registerHandler);
 
 export default router;

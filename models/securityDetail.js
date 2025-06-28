@@ -15,5 +15,4 @@ const SecurityDetailSchema = new Schema({
   },
 });
 
-const SecurityDetail = mongoose.model("SecurityDetail", SecurityDetailSchema);
-module.exports = SecurityDetail;
+export const SecurityDetail = mongoose.model("SecurityDetail", SecurityDetailSchema);
