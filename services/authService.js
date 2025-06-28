@@ -1,5 +1,6 @@
-import jwt from 'jsonwebtoken';
-import config from '../config/config.js';
+import jwt from "jsonwebtoken";
+import { v4 as uuidv4 } from "uuid";
+import config from "../config/config.js";
 
 export const signAccessToken = (user) => {
   const accessToken = jwt.sign(
