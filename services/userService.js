@@ -1,19 +1,19 @@
-import { User } from '../models/user.js';
+import { UserDetail } from '../models/userDetail.js';
 
 export const getUserById = async (id) => {
-  const user = await User.findById(id).lean();
+  const user = await UserDetail.findById(id).lean();
 
   return user;
 };
 
 export const getUserByEmail = async (email) => {
-  const user = await User.findOne({ email }).lean();
+  const user = await UserDetail.findOne({ email_address: email }).lean();
 
   return user;
 };
 
 export const addUser = async (user) => {
-  const newUser = new User(user);
+  const newUser = new UserDetail(user);
 
   await newUser.save();
 
@@ -21,7 +21,7 @@ export const addUser = async (user) => {
 };
 
 export const updateUser = async (id, update) => {
-  const user = await User.findByIdAndUpdate(
+  const user = await UserDetail.findByIdAndUpdate(
     id,
     { $set: update },
     { new: true }

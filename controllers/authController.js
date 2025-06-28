@@ -1,3 +1,4 @@
+import { createdBy } from '../common/enums.js';
 import { signAccessToken } from '../services/authService.js';
 import { addUser, getUserByEmail } from '../services/userService.js';
 import { comparePasswords } from '../utils/functions.js';
@@ -23,7 +24,7 @@ export const loginHandler = async (req, res) => {
 };
 
 export const registerHandler = async (req, res) => {
-  const { email } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   const user = await getUserByEmail(email);
 
@@ -31,7 +32,13 @@ export const registerHandler = async (req, res) => {
     return res.status(400).send({ message: 'User already registered' });
   }
 
-  const newUser = await addUser(req.body);
+  const newUser = await addUser({
+    first_name: firstName,
+    last_name: lastName,
+    email_address: email,
+    password,
+    created_by: createdBy.SELF,
+  });
 
   res.status(201).send(newUser);
 };
