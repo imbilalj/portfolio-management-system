@@ -1,8 +1,8 @@
-import { createdBy } from "../common/enums.js";
-import { signAccessToken } from "../services/authService.js";
-import { auditLoginUser } from "../services/aduitService.js";
-import { addUser, getUserByEmail } from "../services/userService.js";
-import { comparePasswords } from "../utils/functions.js";
+import { createdBy } from '../common/enums.js';
+import { signAccessToken } from '../services/authService.js';
+import { auditLoginUser } from '../services/auditService.js';
+import { addUser, getUserByEmail } from '../services/userService.js';
+import { comparePasswords } from '../utils/functions.js';
 
 export const loginHandler = async (req, res) => {
   const { email, password } = req.body;
@@ -10,7 +10,7 @@ export const loginHandler = async (req, res) => {
   if (!email || !password) {
     return res
       .status(400)
-      .json({ status: false, message: "All fields are required." });
+      .json({ status: false, message: 'All fields are required.' });
   }
 
   try {
@@ -20,7 +20,7 @@ export const loginHandler = async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .send({ status: false, message: "Invalid Email or Password" });
+        .send({ status: false, message: 'Invalid Email or Password' });
     }
 
     const isPasswordValid = await comparePasswords(password, user.password);
@@ -28,11 +28,11 @@ export const loginHandler = async (req, res) => {
     if (!isPasswordValid) {
       return res
         .status(400)
-        .send({ status: false, message: "Invalid Email or Password" });
+        .send({ status: false, message: 'Invalid Email or Password' });
     }
 
     const accessToken = signAccessToken(user);
-    const login_status = accessToken ? "Successful" : "Failed";
+    const login_status = accessToken ? 'Successful' : 'Failed';
 
     auditLoginUser(user._id, login_status);
 
@@ -40,7 +40,7 @@ export const loginHandler = async (req, res) => {
   } catch (err) {
     return res.status(500).json({
       status: false,
-      message: "Failed to login user.",
+      message: 'Failed to login user.',
       error: err.message,
     });
   }
@@ -52,7 +52,7 @@ export const registerHandler = async (req, res) => {
   if (!firstName || !lastName || !email || !password) {
     return res
       .status(400)
-      .json({ status: false, message: "All fields are required." });
+      .json({ status: false, message: 'All fields are required.' });
   }
   try {
     const user = await getUserByEmail(email);
@@ -60,7 +60,7 @@ export const registerHandler = async (req, res) => {
     if (user) {
       return res
         .status(400)
-        .send({ status: false, message: "User already registered" });
+        .send({ status: false, message: 'User already registered' });
     }
 
     const newUser = await addUser({
@@ -75,7 +75,7 @@ export const registerHandler = async (req, res) => {
   } catch (err) {
     return res.status(500).json({
       status: false,
-      message: "Failed to login user.",
+      message: 'Failed to login user.',
       error: err.message,
     });
   }
